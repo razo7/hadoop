@@ -649,6 +649,7 @@ public class RMContainerAllocator extends RMContainerRequestor
     if (numPendingReduces == 0) {
       return;
     }
+
     
     // get available resources for this job
     Resource headRoom = getAvailableResources();
@@ -1310,6 +1311,8 @@ public class RMContainerAllocator extends RMContainerRequestor
         
     private void assignContainers(List<Container> allocatedContainers) {
       Iterator<Container> it = allocatedContainers.iterator();
+      LOG.info("Number of containers: " + allocatedContainers.size() +"\nNumber of mappers " + maps.size()
+      + "\nNumber of reducers " + reduces.size());
       while (it.hasNext()) {
         Container allocated = it.next();
         ContainerRequest assigned = assignWithoutLocality(allocated);
